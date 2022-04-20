@@ -17,12 +17,13 @@ const router = express.Router();
 //     }
 // );
 const checkData = (reqBody) => {
-    // console.log("Estoy en el controller");  
+    console.log("CHECK DATA");
+    console.log(reqBody);  
     return new Promise(async (resolve, reject) => {  
         try{
             // let indice = await getIndex();
         
-            const newMessage =  reqBody.body;
+            const newMessage =  reqBody;
             // store.add(newPhoto);
             resolve(newMessage);
 
@@ -34,10 +35,11 @@ const checkData = (reqBody) => {
 
 router.post('/', (req, res) => {
     console.log("NETWORK"); 
-    // console.log(req.body.result);
+    // console.log(req.body);
     checkData(req.body)
         .then(newMessage => {
-            response.succes(req, res, newMessage, 201);
+            console.log("Respondiendo: ", newMessage);
+            response.succes(req, res, newMessage, 200);
         })
         .catch(e => {
             console.error("catching error", e);
